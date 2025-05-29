@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+      /* Add this CSS to make the embedded Google Form responsive */
+      iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 500px; /* Adjust this value as needed */
+      }
+
+      /* Responsive improvements */
+      @media screen and (max-width: 768px) {
+        .container {
+          padding: 10px;
+        }
+        .input,
+        .select {
+          width: 100%;
+        }
+        .button {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero is-primary is-bold"></section>
+    <form id="form" class="container m-4 pl-4" method="POST">
+      <div class="field">
+        <label class="label">Club Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Club Name"
+            name="Club_Name"
+            autocomplete="off"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Team Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Team Name"
+            name="Team_Name"
+            autocomplete="off"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Team Year</label>
+        <div class="control">
+          <select class="input" id="team-year" name="Team_Year" required>
+            <option value="">YTSI is for U6-U20 youth teams</option>
+            <!-- Options will be added dynamically -->
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Team Gender</label>
+        <div class="control">
+          <select class="select" id="team-gender" name="Team_Gender" required>
+            <option value="">Select...</option>
+            <option value="Boys">Boys</option>
+            <option value="Girls">Girls</option>
+            <option value="Mixed">Mixed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Question 1: Training Frequency -->
+      <div class="field">
+        <label class="label">How often does your team train per week?</label>
+        <select class="select" name="training_frequency" required>
+          <option value="">Select...</option>
+          <option>0 times</option>
+          <option>1 time</option>
+          <option>2 times</option>
+          <option>3-4 times</option>
+          <option>5+ times</option>
+        </select>
+      </div>
+
+      <!-- Question 2: Training Duration -->
+      <div class="field">
+        <label class="label"
+          >What is the duration of a typical training session?</label
+        >
+        <select class="select" name="training_duration" required>
+          <option value="">Select...</option>
+          <option>Less than 45 minutes</option>
+          <option>45-60 minutes</option>
+          <option>60-90 minutes</option>
+          <option>More than 90 minutes</option>
+        </select>
+      </div>
+
+      <!-- Question 3: Position-Specific Training -->
+      <div class="field">
+        <label class="label"
+          >Does your team have separate position-specific training?</label
+        >
+        <select class="select" name="position_training" required>
+          <option value="">Select...</option>
+          <option>No</option>
+          <option>Occasionally</option>
+          <option>Yes, but irregularly</option>
+          <option>Yes, consistently</option>
+        </select>
+      </div>
+
+      <!-- Question 4: Fitness Training -->
+      <div class="field">
+        <label class="label"
+          >Does your team include structured fitness and conditioning in
+          training?</label
+        >
+        <select class="select" name="fitness_training" required>
+          <option value="">Select...</option>
+          <option>No fitness training</option>
+          <option>Light fitness training integrated into drills</option>
+          <option>Dedicated fitness sessions occasionally</option>
+          <option>Regular and structured fitness training</option>
+        </select>
+      </div>
+
+      <!-- Question 5: Skills & Performance Testing -->
+      <div class="field">
+        <label class="label"
+          >Does your team conduct regular skills and performance testing?</label
+        >
+        <select class="select" name="skills_testing" required>
+          <option value="">Select...</option>
+          <option>No testing</option>
+          <option>Informal testing</option>
+          <option>Formal testing once a year</option>
+          <option>Formal testing multiple times per year</option>
+        </select>
+      </div>
+
+      <!-- Question 6: Competition Level -->
+      <div class="field">
+        <label class="label"
+          >What level of competition does your team regularly play in?</label
+        >
+        <select class="select" name="competition_level" required>
+          <option value="">Select...</option>
+          <option>Recreational (local, non-competitive)</option>
+          <option>Athletic (regional leagues, mid-tier competition)</option>
+          <option>Competitive (state/national leagues, advanced teams)</option>
+          <option>
+            Elite (national/international tournaments, top-tier teams)
+          </option>
+        </select>
+      </div>
+
+      <!-- Question 7: Season Performance -->
+      <div class="field">
+        <label class="label"
+          >How does your team's typical season performance compare to
+          opponents?</label
+        >
+        <select class="select" name="season_performance" required>
+          <option value="">Select...</option>
+          <option>Usually loses by large margins</option>
+          <option>Occasionally wins, but mostly loses</option>
+          <option>Wins and loses evenly</option>
+          <option>Wins most matches</option>
+          <option>Consistently dominant</option>
+        </select>
+      </div>
+
+      <!-- Question 8: Tournament Participation -->
+      <div class="field">
+        <label class="label"
+          >Does your team play in competitive tournaments?</label
+        >
+        <select class="select" name="tournament_participation" required>
+          <option value="">Select...</option>
+          <option>No tournaments</option>
+          <option>Local tournaments only</option>
+          <option>Regional tournaments</option>
+          <option>National tournaments</option>
+          <option>International tournaments</option>
+        </select>
+      </div>
+
+      <!-- Question 9: Friendly Matches -->
+      <div class="field">
+        <label class="label"
+          >How often does your team schedule friendly matches?</label
+        >
+        <select class="select" name="friendly_matches" required>
+          <option value="">Select...</option>
+          <option>Never</option>
+          <option>Rarely</option>
+          <option>Every few months</option>
+          <option>Monthly</option>
+          <option>Weekly or bi-weekly</option>
+        </select>
+      </div>
+
+      <!-- Question 10: Player Selection -->
+      <div class="field">
+        <label class="label">How does your team select players?</label>
+        <select class="select" name="player_selection" required>
+          <option value="">Select...</option>
+          <option>Open to all players</option>
+          <option>Some selection, but mostly open</option>
+          <option>Competitive try-outs</option>
+          <option>Strategic selection to build a top-performing team</option>
+        </select>
+      </div>
+
+      <!-- Question 11: Ball Possession -->
+      <div class="field">
+        <label class="label"
+          >How effective is your team’s ability to press, gain, and maintain
+          ball possession?</label
+        >
+        <select class="select" name="ball_possession" required>
+          <option value="">Select...</option>
+          <option>Not at all effective</option>
+          <option>Not so effective</option>
+          <option>Somewhat effective</option>
+          <option>Very effective</option>
+          <option>Extremely effective</option>
+        </select>
+      </div>
+
+      <!-- Question 12: Passing Accuracy -->
+      <div class="field">
+        <label class="label"
+          >How effective is your team's ability to pass the ball
+          accurately?</label
+        >
+        <select class="select" name="passing_accuracy" required>
+          <option value="">Select...</option>
+          <option>Not at all effective</option>
+          <option>Not so effective</option>
+          <option>Somewhat effective</option>
+          <option>Very effective</option>
+          <option>Extremely effective</option>
+        </select>
+      </div>
+
+      <!-- Question 13: Defensive Organization -->
+      <div class="field">
+        <label class="label"
+          >How effective is your team's defensive organization?</label
+        >
+        <select class="select" name="defensive_organization" required>
+          <option value="">Select...</option>
+          <option>Not at all effective</option>
+          <option>Not so effective</option>
+          <option>Somewhat effective</option>
+          <option>Very effective</option>
+          <option>Extremely effective</option>
+        </select>
+      </div>
+
+      <!-- Question 14: Communication -->
+      <div class="field">
+        <label class="label"
+          >How well does your team communicate on the field?</label
+        >
+        <select class="select" name="team_communication" required>
+          <option value="">Select...</option>
+          <option>No communication</option>
+          <option>Limited communication</option>
+          <option>Somewhat effective</option>
+          <option>Very effective</option>
+          <option>Extremely effective</option>
+        </select>
+      </div>
+
+      <!-- Question 15: 1v1 Strength -->
+      <div class="field">
+        <label class="label"
+          >How strong are your players in 1v1 situations?</label
+        >
+        <select class="select" name="one_v_one_strength" required>
+          <option value="">Select...</option>
+          <option>Very weak</option>
+          <option>Occasionally successful</option>
+          <option>Fairly successful</option>
+          <option>Frequently wins 1v1 duels</option>
+          <option>Consistently dominates 1v1 situations</option>
+        </select>
+      </div>
+
+      <!-- Question 16: Recorded Gameplay Analysis -->
+      <div class="field">
+        <label class="label"
+          >Does your team use recorded gameplay video for coaching
+          analysis?</label
+        >
+        <select class="select" name="video_analysis" required>
+          <option value="">Select...</option>
+          <option>Never</option>
+          <option>Occasionally</option>
+          <option>Frequently</option>
+          <option>Regularly, with structured review</option>
+        </select>
+      </div>
+
+      <!-- Question 17: 1-on-1 Evaluations -->
+      <div class="field">
+        <label class="label"
+          >Does your team conduct 1-on-1 performance evaluations with
+          players?</label
+        >
+        <select class="select" name="one_on_one_evaluations" required>
+          <option value="">Select...</option>
+          <option>No</option>
+          <option>Once per season</option>
+          <option>Multiple times per season</option>
+          <option>Regular ongoing feedback</option>
+        </select>
+      </div>
+
+      <!-- Question 18: Game Time Distribution -->
+      <div class="field">
+        <label class="label">How is game time distributed among players?</label>
+        <select class="select" name="game_time_distribution" required>
+          <option value="">Select...</option>
+          <option>Equal time for all players</option>
+          <option>Balanced but performance-based</option>
+          <option>Mostly skill-based but with rotation</option>
+          <option>Fully skill-based, only top players get extended time</option>
+        </select>
+      </div>
+
+      <!-- Question 19: Coaching Type -->
+      <div class="field">
+        <label class="label"
+          >What is the type of coaching within your team?</label
+        >
+        <select class="select" name="coaching_type" required>
+          <option value="">Select...</option>
+          <option>Volunteer parents, no formal training</option>
+          <option>Certified youth coaches with basic training</option>
+          <option>Experienced coaches with advanced certifications</option>
+          <option>Professional-level coaching staff</option>
+        </select>
+      </div>
+
+      <!-- Question 20: Training Environment -->
+      <div class="field">
+        <label class="label"
+          >How is your team's overall training environment?</label
+        >
+        <select class="select" name="training_environment" required>
+          <option value="">Select...</option>
+          <option>Casual and unstructured</option>
+          <option>Encouraging but lightly structured</option>
+          <option>Focused with clear development plans</option>
+          <option>High-performance environment</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label">Team Country</label>
+        <div class="control">
+          <select class="input" id="team-country" name="Team_Country" required>
+            <option value="">Select a Country</option>
+            <!-- Optional placeholder -->
+            <!-- List of countries will be added dynamically here -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Include jQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script>
+        // List of countries (from your provided list)
+        const countries = [
+          "Afghanistan",
+          "Albania",
+          "Algeria",
+          "American Samoa",
+          "Andorra",
+          "Angola",
+          "Anguilla",
+          "Antigua and Barbuda",
+          "Argentina",
+          "Armenia",
+          "Aruba",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Barbados",
+          "Belarus",
+          "Belgium",
+          "Belize",
+          "Benin",
+          "Bermuda",
+          "Bhutan",
+          "Bolivia",
+          "Bosnia and Herzegovina",
+          "Botswana",
+          "Brazil",
+          "British Virgin Islands",
+          "Brunei Darussalam",
+          "Bulgaria",
+          "Burkina Faso",
+          "Burundi",
+          "Cabo Verde",
+          "Cambodia",
+          "Cameroon",
+          "Canada",
+          "Cayman Islands",
+          "Central African Republic",
+          "Chad",
+          "Chile",
+          "China PR",
+          "Chinese Taipei",
+          "Colombia",
+          "Comoros",
+          "Congo",
+          "Congo DR",
+          "Cook Islands",
+          "Costa Rica",
+          "Côte d'Ivoire",
+          "Croatia",
+          "Cuba",
+          "Curaçao",
+          "Cyprus",
+          "Czechia",
+          "Denmark",
+          "Djibouti",
+          "Dominica",
+          "Dominican Republic",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "England",
+          "Equatorial Guinea",
+          "Eritrea",
+          "Estonia",
+          "Eswatini",
+          "Ethiopia",
+          "Faroe Islands",
+          "Fiji",
+          "Finland",
+          "France",
+          "Gabon",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Gibraltar",
+          "Greece",
+          "Grenada",
+          "Guam",
+          "Guatemala",
+          "Guinea",
+          "Guinea-Bissau",
+          "Guyana",
+          "Haiti",
+          "Honduras",
+          "Hong Kong, China",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "IR Iran",
+          "Iraq",
+          "Israel",
+          "Italy",
+          "Jamaica",
+          "Japan",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Korea DPR",
+          "Korea Republic",
+          "Kosovo",
+          "Kuwait",
+          "Kyrgyz Republic",
+          "Laos",
+          "Latvia",
+          "Lebanon",
+          "Lesotho",
+          "Liberia",
+          "Libya",
+          "Liechtenstein",
+          "Lithuania",
+          "Luxembourg",
+          "Macau",
+          "Madagascar",
+          "Malawi",
+          "Malaysia",
+          "Maldives",
+          "Mali",
+          "Malta",
+          "Mauritania",
+          "Mauritius",
+          "Mexico",
+          "Moldova",
+          "Mongolia",
+          "Montenegro",
+          "Montserrat",
+          "Morocco",
+          "Mozambique",
+          "Myanmar",
+          "Namibia",
+          "Nepal",
+          "Netherlands",
+          "New Caledonia",
+          "New Zealand",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "North Macedonia",
+          "Northern Ireland",
+          "Norway",
+          "Oman",
+          "Pakistan",
+          "Palestine",
+          "Panama",
+          "Papua New Guinea",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Poland",
+          "Portugal",
+          "Puerto Rico",
+          "Qatar",
+          "Republic of Ireland",
+          "Romania",
+          "Russia",
+          "Rwanda",
+          "Samoa",
+          "San Marino",
+          "São Tomé and Príncipe",
+          "Saudi Arabia",
+          "Scotland",
+          "Senegal",
+          "Serbia",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapore",
+          "Slovakia",
+          "Slovenia",
+          "Solomon Islands",
+          "Somalia",
+          "South Africa",
+          "South Sudan",
+          "Spain",
+          "Sri Lanka",
+          "St Kitts and Nevis",
+          "St Lucia",
+          "St Vincent and the Grenadines",
+          "Sudan",
+          "Suriname",
+          "Sweden",
+          "Switzerland",
+          "Syria",
+          "Tahiti",
+          "Tajikistan",
+          "Tanzania",
+          "Thailand",
+          "The Gambia",
+          "Timor-Leste",
+          "Togo",
+          "Tonga",
+          "Trinidad and Tobago",
+          "Tunisia",
+          "Türkiye",
+          "Turkmenistan",
+          "Turks and Caicos Islands",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "Uruguay",
+          "US Virgin Islands",
+          "USA",
+          "Uzbekistan",
+          "Vanuatu",
+          "Venezuela",
+          "Vietnam",
+          "Wales",
+          "Yemen",
+          "Zambia",
+          "Zimbabwe",
+        ];
+
+        // Populate the dropdown with the list of countries
+        const dropdown = $("#team-country");
+        countries.forEach((country) => {
+          dropdown.append(new Option(country, country));
+        });
+      </script>
+
+      <div class="field">
+        <label class="label">Team City</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Team City"
+            name="Team_City"
+            autocomplete="off"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Team State</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Team State (Not Required)"
+            name="Team_State"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Team Post Code</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Team Post Code"
+            name="Team_Post_Code"
+            autocomplete="off"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Your First Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Your First Name"
+            name="Your_First_Name"
+            autocomplete="given-name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Your Last Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Your Last Name"
+            name="Your_Last_Name"
+            autocomplete="family-name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Your Email</label>
+        <div class="control">
+          <input
+            class="input"
+            type="email"
+            placeholder="Your Email"
+            name="Your_Email"
+            autocomplete="email"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Agree to Terms</label>
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" name="Agree_To_Terms" value="yes" required />
+            I agree to the
+            <a
+              href="https://sites.google.com/view/ytsi/ytsi-termsconditionsprivacy"
+              target="_blank"
+              >Terms and Conditions</a
+            >
+            and
+            <a
+              href="https://sites.google.com/view/ytsi/ytsi-termsconditionsprivacy"
+              target="_blank"
+              >Privacy Policy</a
+            >.
+          </label>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary" type="submit" id="submit-button">
+            Get Your YTSI Score
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-danger">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+    <div
+      id="message"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        font-weight: bold;
+        padding: 8px;
+        background-color: beige;
+        border: 1px solid aquamarine;
+        border-radius: 4px;
+        color: green;
+      "
+    ></div>
+
+    <script>
+      document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        document.getElementById("message").textContent =
+          "Submitting..this may take up to 10 seconds. Please wait for success confirmation.";
+        document.getElementById("message").style.display = "block";
+        document.getElementById("submit-button").disabled = true;
+
+        // Collect the form data
+        var formData = new FormData(this);
+        var keyValuePairs = [];
+        for (var pair of formData.entries()) {
+          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        }
+
+        var formDataString = keyValuePairs.join("&");
+
+        // Send a POST request to your Google Apps Script
+        fetch(
+          "https://script.google.com/macros/s/AKfycbxAb2BpjJQ4CieC57judR-R543wyJGV8RbWoiawfXuOKKNhRx7GVyj-JxLB8fWnxT0/exec",
+          {
+            redirect: "follow",
+            method: "POST",
+            body: formDataString,
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+          }
+        )
+          .then(function (response) {
+            // Check if the request was successful
+            if (response) {
+              return response; // Assuming your script returns JSON response
+            } else {
+              throw new Error("Failed to submit the form.");
+            }
+          })
+          .then(function (data) {
+            // Display a success message
+            document.getElementById("message").textContent =
+              "Success! Please check your email to get your YTSI Score. Hint: If you don't see a message, check your junk mail.";
+            alert(
+              "Success! Please check your email to get your YTSI Score. Hint: If you don't see a message, check your junk mail."
+            );
+            document.getElementById("message").style.display = "block";
+            document.getElementById("message").style.backgroundColor = "green";
+            document.getElementById("message").style.color = "beige";
+            document.getElementById("submit-button").disabled = false;
+            document.getElementById("form").reset();
+
+            setTimeout(function () {
+              document.getElementById("message").textContent = "";
+              document.getElementById("message").style.display = "none";
+            }, 5200);
+          })
+          .catch(function (error) {
+            // Handle errors, you can display an error message here
+            console.error(error);
+            document.getElementById("message").textContent =
+              "An error occurred while submitting the form.";
+            document.getElementById("message").style.display = "block";
+          });
+      });
+    </script>
+
+    <script>
+      // Generate U6 to U20 years dynamically
+      const currentYear = new Date().getFullYear();
+      const minYear = currentYear - 20; // U20
+      const maxYear = currentYear - 6; // U6
+      const yearDropdown = document.getElementById("team-year");
+
+      for (let year = maxYear; year >= minYear; year--) {
+        let option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearDropdown.appendChild(option);
+      }
+    </script>
+  </body>
+</html>
